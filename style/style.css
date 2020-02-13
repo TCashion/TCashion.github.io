@@ -130,16 +130,6 @@ h3 {
     padding: 4px 0px 4px 4px; 
 }
 
-
-
-nav button {
-    margin: 5px; 
-}
-
-button:hover {
-    cursor: pointer;
-}
-
 #timer {
     margin: auto 0;
 }
@@ -184,6 +174,10 @@ button {
     font-size: 2rem;
     font-weight: 800; 
     margin: 10px;
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 input {

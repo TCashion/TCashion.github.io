@@ -61,7 +61,7 @@ $(document).ready(function () {
 
                 // Display welcome message for new user
                 var welcomeMessage = `Welcome, ${email}!`;
-                $("#welcome-message").append(welcomeMessage);
+                $("#welcome-message").html(welcomeMessage);
             });
 
             // enable logout function
@@ -108,8 +108,8 @@ $(document).ready(function () {
         $("#log-out-button").on("click", function () {
             auth.signOut().then(() => {
                 $("#log-out-div").hide(250);
-                $(".auth-buttons").slideDown(250);
-                $("#welcome-message").replaceWith("");
+                $(".auth-buttons").show(250);
+                $("#welcome-message").html("");
             });    
         });
     };
