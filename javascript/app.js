@@ -26,7 +26,8 @@ $(document).ready(function () {
             $(".auth-buttons").hide(250);
             $("#log-out-div").slideDown(250);
             var email = user.email;
-            var welcomeMessage = `Welcome back, ${email}!`;
+            var welcomeMessa
+            ge = `Welcome back, ${email}!`;
             $("#welcome-message").html(welcomeMessage);
             logOut(); 
             } else {
@@ -62,6 +63,9 @@ $(document).ready(function () {
                 // Display welcome message for new user
                 var welcomeMessage = `Welcome, ${email}!`;
                 $("#welcome-message").html(welcomeMessage);
+                $("#sign-up-email").val("");
+                $("#first-password").val("");
+                $("#sign-up-password-verified").val("");
             });
 
             // enable logout function
@@ -96,6 +100,8 @@ $(document).ready(function () {
                     // Display welcome message for returning user
                     var welcomeMessage = `Welcome back, ${email}!`;
                     $("#welcome-message").html(welcomeMessage);
+                    $("#sign-in-email").val("");
+                    $("#sign-in-password").val("");
                 });
             
             // enable logout function
