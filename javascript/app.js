@@ -25,8 +25,8 @@ $(document).ready(function () {
             console.log("user logged in: ", user);
             $(".auth-buttons").hide(250);
             $("#log-out-div").slideDown(250);
-            var welcomeMessage = `Welcome back!`;
-            // var welcomeMessage = `Welcome back, ${email}!`;
+            var email = user.email;
+            var welcomeMessage = `Welcome back, ${email}!`;
             $("#welcome-message").html(welcomeMessage);
             logOut(); 
             } else {
