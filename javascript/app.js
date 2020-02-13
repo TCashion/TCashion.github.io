@@ -27,7 +27,7 @@ $(document).ready(function () {
             $("#log-out-div").slideDown(250);
             var welcomeMessage = `Welcome back!`;
             // var welcomeMessage = `Welcome back, ${email}!`;
-            $("#welcome-message").append(welcomeMessage);
+            $("#welcome-message").html(welcomeMessage);
             logOut(); 
             } else {
                 console.log("user logged out");
@@ -95,7 +95,7 @@ $(document).ready(function () {
 
                     // Display welcome message for returning user
                     var welcomeMessage = `Welcome back, ${email}!`;
-                    $("#welcome-message").append(welcomeMessage);
+                    $("#welcome-message").html(welcomeMessage);
                 });
             
             // enable logout function
