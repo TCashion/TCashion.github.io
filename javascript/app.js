@@ -19,9 +19,19 @@ $(document).ready(function () {
 
     // MODULE Authentication
     
-    // check auth status
+    // check auth status and adjust nav display if user already logged in 
         auth.onAuthStateChanged(user => {
-            console.log(user);
+            if (user) {
+            console.log("user logged in: ", user);
+            $(".auth-buttons").hide(250);
+            $("#log-out-div").slideDown(250);
+            var welcomeMessage = `Welcome back!`;
+            // var welcomeMessage = `Welcome back, ${email}!`;
+            $("#welcome-message").append(welcomeMessage);
+            logOut(); 
+            } else {
+                console.log("user logged out");
+            };
         });
 
     // brings up sign-up form
@@ -80,7 +90,6 @@ $(document).ready(function () {
             const password = $("#sign-in-password").val();
             auth.signInWithEmailAndPassword(email, password).then(cred =>
                 {
-                    console.log(cred.user);
                     $("#nav-sign-in").hide(250);
                     $("#log-out-div").slideDown(250); 
 
