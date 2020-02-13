@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tracker</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text:700&display=swap" rel="stylesheet">
+        <!-- font-family: 'Crimson Text', serif; -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+        <!-- font-family: 'Open Sans', sans-serif; -->
+
+    <!-- link Reset -->
+    <link rel="stylesheet" href="style/reset.css" />
+
+    <!-- link style sheet -->
+    <link rel="stylesheet" href="style/style.css" />
+
+    <!-- link jQuery -->
+    <script src="vendor/jquery-3.4.1.min.js"></script>
+
+    <!-- link moment.js library -->
+    <script src="vendor/moment.min.js"></script>
+
+    <!-- link chart.js library -->
+    <script src="vendor/chart.min.js"></script>
+
+    <!-- link Parsley.js library -->
+    <script src="vendor/parsley.js"></script>
+
+    <!-- link javascript app page -->
+    <script src="javascript/app.js"></script>
+
+</head>
+
+<body>
+
+    <nav>
+        <div class="col col-6" id="welcome-message"></div>
+        <div class="col col-6">
+            <div class="row">
+                <div class="col col-3 auth-buttons">
+                    New to Day Tracker? 
+                    <button id="sign-up">Sign up</button>
+                </div>
+                <div class="col col-3 auth-buttons">
+                    Already a Day Tracker User? 
+                    <button id="sign-in">Sign in</button>
+                </div>
+                <div class="col col-6" id="nav-sign-in">
+                    <form id="sign-in-form" data-parsley-validate>
+                        <div class="row">
+                            <input type="text" id="sign-in-email" placeholder="Email Address" data-parsley-type="email">
+                        </div>
+                        <div class="row">
+                            <input type="password" id="sign-in-password" placeholder="Password" data-parsley-minlength="6">
+                            <button id="sign-in-submit">Submit</button>
+                            <button id="sign-in-go-back">Go Back</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col col-6" id="nav-sign-up">
+                    <form id="sign-up-form" data-parsley-validate>
+                        <div class="row">
+                            <input type="text" placeholder="Email Address" id="sign-up-email" data-parsley-type="email">
+                        </div>
+                        <div class="row">
+                            <input  type="password" id="first-password" placeholder="Password" data-parsley-minlength="6">
+                        </div>
+                        <div class="row">
+                            <input type="password" placeholder="Confirm Password" id="sign-up-password-verified" data-parsley-equalto="#first-password">
+                            <button id="sign-up-submit">Submit</button>
+                            <button id="sign-up-go-back">Go Back</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col col-6" id="log-out-div">
+                    <button id="log-out-button">Log Out</button>
+                </div>
+            </div>
+            
+        </div>
+        
+        
+    </nav>
+
+    <div class="container">
+        <div class="row header">
+            <div class="col col-12 ">
+                <h1>Day Tracker</h1>
+            </div>
+        </div>
+        <form id="activityForm">
+            <div class="row timerUI">
+                <div class="col col-6 inputForm">
+                        <input type="text" id="nameActivity" Placeholder="Example: Emails...">
+                </div>
+                <div class="col col-6 inputForm">
+                    <button id="startTimer">Start Timer</button>
+                </div>
+                <!-- timerHide class is hidden at page load -->
+                <div class="col col-6 timerHide">
+                    <h1 id="timer">00 : 00</h1>
+                </div>
+                <!-- timerHide class is hidden at page load -->
+                <div class="col col-6 timerHide">                
+                    <button id="stopTimer">Stop</button>
+                </div>
+            </div>
+        </form>
+        <div class="row metrics">
+            <div class="col col-6"> 
+                <h2>Today's Timetable</h2>
+                <div class="tableDiv">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Activity type</th> 
+                                <th>Duration</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="timeLog">
+                            <!-- Dynamically added with html -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col col-6">
+                <h2>Chart View</h2>
+                <canvas id="chartView"></canvas>
+            </div>          
+        </div>
+        <div class ="row">
+            <div class="col col-12 footer">
+                <h3>Created by <span class="name">Travis Cashion</span></h3>
+            </div>
+        </div>
+    </div>
+
+
+
+<!-- ******************************************************** -->
+<!-- *************** INITIALIZE FIREBASE ******************** -->
+<!-- ******************************************************** -->
+<!-- firebase libraries https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-app.js"></script>
+    <!-- connect firebase firestore database library  -->
+<script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-firestore.js"></script>
+    <!-- connect firebase authentication library  -->
+<script src="https://www.gstatic.com/firebasejs/7.8.0/firebase-auth.js"></script>
+
+<script>
+
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+    apiKey: "AIzaSyCogCq5F01u3FnhsIlFHphncccDZ8n5vec",
+    authDomain: "day-tracker-5ce31.firebaseapp.com",
+    databaseURL: "https://day-tracker-5ce31.firebaseio.com",
+    projectId: "day-tracker-5ce31",
+    storageBucket: "day-tracker-5ce31.appspot.com",
+    messagingSenderId: "570833394131",
+    appId: "1:570833394131:web:b53c5ff1b1da4c9fbf7726",
+    measurementId: "G-HZ6N0L6TSQ"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    
+    // make auth and firebase references
+    const db = firebase.firestore();
+    const auth = firebase.auth(); 
+
+
+</script>
+
+<!-- ******************************************************** -->
+<!-- *************** END INITIALIZE FIREBASE **************** -->
+<!-- ******************************************************** -->
+
+
+
+</body>
+</html>

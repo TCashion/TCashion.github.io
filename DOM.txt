@@ -1,0 +1,9 @@
+Title: Time boxer w/ boxing glove logo?
+
+Layout: "Banner" accross top with timer and buttons
+    Left column registers activity
+    Right column creates pie chart
+    Footer with social and copyright info
+
+Features: 
+    API's? Play music with youtube API?
