@@ -41,13 +41,9 @@ $(document).ready(function () {
                     // console.log(doc.id, "=> ", doc.data());
                     var data = doc.data();
                     var todaysActivities = data.activity;
-                    var todaysDurations = data.duration;
+                    var todaysDurations = moment(data.duration).format("mm:ss");    
                     var todaysStartTimes = data.start;
                     var todaysEndTimes = data.end;
-                    console.log(todaysActivities);
-                    // console.log(todaysDurations);
-                    // console.log(todaysStartTimes);
-                    // console.log(todaysEndTimes);
                 
                     // display data on table
                     var tableItemHtml = `
