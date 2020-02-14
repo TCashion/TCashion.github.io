@@ -41,7 +41,8 @@ $(document).ready(function () {
                     // console.log(doc.id, "=> ", doc.data());
                     var data = doc.data();
                     var todaysActivities = data.activity;
-                    var todaysDurations = moment(data.duration).format("mm:ss"); 
+                    var todaysDurations = data.duration;
+                    var todaysDurationsLegible = moment(data.duration).format("mm:ss"); 
                     var todaysStartTimes = data.start;
                     var todaysEndTimes = data.end;
                 
@@ -49,12 +50,18 @@ $(document).ready(function () {
                     var tableItemHtml = `
                         <tr>
                             <td>${todaysActivities}</td>
-                            <td>${todaysDurations}</td>
+                            <td>${todaysDurationsLegible}</td>
                             <td>${todaysStartTimes}</td>
                             <td>${todaysEndTimes}</td>
                         </tr>
                         `;
                     $("#timeLog").append(tableItemHtml);
+
+                    // display chart
+                    chartLabels = todaysActivities;
+                    console.log(chartLabels);
+                    chartData = todaysDurations;
+                    console.log(chartData);
                 });
 
                 
