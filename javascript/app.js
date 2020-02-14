@@ -148,6 +148,7 @@ $(document).ready(function () {
                 $("#log-out-div").hide(250);
                 $(".auth-buttons").show(250);
                 $("#welcome-message").html("");
+                $("#timeLog").html("");
             });    
         });
     };
