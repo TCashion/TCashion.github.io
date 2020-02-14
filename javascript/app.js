@@ -38,28 +38,30 @@ $(document).ready(function () {
             // detect if data for today already exists
             db.collection("timelog").where("date", "==", today).where("user", "==", email).get().then(querySnapshot => {
                 querySnapshot.forEach(function (doc) {
-                    console.log(doc.id, "=> ", doc.data());
+                    // console.log(doc.id, "=> ", doc.data());
                     var data = doc.data();
                     var todaysActivities = data.activity;
                     var todaysDurations = data.duration;
                     var todaysStartTimes = data.start;
                     var todaysEndTimes = data.end;
                     console.log(todaysActivities);
-                    console.log(todaysDurations);
-                    console.log(todaysStartTimes);
-                    console.log(todaysEndTimes);
+                    // console.log(todaysDurations);
+                    // console.log(todaysStartTimes);
+                    // console.log(todaysEndTimes);
+                
+                    // display data on table
+                    var tableItemHtml = `
+                        <tr>
+                            <td>${todaysActivities}</td>
+                            <td>${todaysDurations}</td>
+                            <td>${todaysStartTimes}</td>
+                            <td>${todaysEndTimes}</td>
+                        </tr>
+                        `;
+                    $("#timeLog").append(tableItemHtml);
                 });
 
-                // display data on table
-                // var tableItemHtml = `
-                //     <tr>
-                //         <td>${activityName}</td>
-                //         <td id="replace1">--:--</td>
-                //         <td>${startTimeLegible}</td>
-                //         <td id="replace2">--:--</td>
-                //     </tr>
-                // `;
-                // $("#timeLog").append(tableItemHtml);
+                
             });
             
             } else {
