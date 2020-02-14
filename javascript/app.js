@@ -14,6 +14,7 @@ $(document).ready(function () {
     var handle; 
     var timer;
     var today = moment().format("LL");
+    var email; 
     var now; 
     var duration;
     var durationLegible;
@@ -26,7 +27,7 @@ $(document).ready(function () {
             console.log("user logged in: ", user);
             $(".auth-buttons").hide(250);
             $("#log-out-div").slideDown(250);
-            var email = user.email;
+            email = user.email;
             var welcomeMessage = `Welcome back, ${email}!`;
             $("#welcome-message").html(welcomeMessage);
             logOut(); 
@@ -227,9 +228,8 @@ $(document).ready(function () {
         timer.textContent = timerCountLegible; 
 
         // add data to firebase 
-        var email = user.email;
         db.collection("timelog").add({
-            // user: email, 
+            user: email, 
             today: today,
             activity: activityName,
             duration: duration,
