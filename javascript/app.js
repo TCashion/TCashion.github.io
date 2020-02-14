@@ -13,6 +13,7 @@ $(document).ready(function () {
     var stopTimeLegible;
     var handle; 
     var timer;
+    var today = moment().format("LL");
     var now; 
     var duration;
     var durationLegible;
@@ -26,8 +27,7 @@ $(document).ready(function () {
             $(".auth-buttons").hide(250);
             $("#log-out-div").slideDown(250);
             var email = user.email;
-            var welcomeMessa
-            ge = `Welcome back, ${email}!`;
+            var welcomeMessage = `Welcome back, ${email}!`;
             $("#welcome-message").html(welcomeMessage);
             logOut(); 
             } else {
@@ -181,9 +181,6 @@ $(document).ready(function () {
 
 
     // STOPWATCH FUNCTION
-
-    // BUG : current code works with counting seconds and minutes, but when hours are factored, it adds 5 hours for some reason, so clock starts at 05:00:00:0
-
     function runClock() {
     
         // calls out html element where time will be displayed
@@ -230,13 +227,15 @@ $(document).ready(function () {
         timer.textContent = timerCountLegible; 
 
         // add data to firebase 
-        // COMMENTED OUT DURING TESTING PHASE 
-        // db.collection("timelog").add({
-        //         activity: activityName,
-        //         duration: duration,
-        //         start: startTimeLegible,
-        //         end: stopTimeLegible
-        // });
+        var email = user.email;
+        db.collection("timelog").add({
+            // user: email, 
+            today: today,
+            activity: activityName,
+            duration: duration,
+            start: startTimeLegible,
+            end: stopTimeLegible
+        });
 
         // combines data if the activityName already exists
         for ( var i = 0; i < (chartLabels.length); i++) {
@@ -371,5 +370,11 @@ $(document).ready(function () {
         // fit current values into chart so that they accumulate
             // more.......... 
     // END MODULE
+
+    // MODULE trackData: when user1 is logged in, track data for the same day 
+        // READ today's date
+        // if user1 refreshes the page, or if user1 logs out and back in, the app retreives data from the same day and displays it. 
+        // if no data for same day exists, then blank table is displayed
+
 
 // END PROGRAM
