@@ -58,10 +58,10 @@ $(document).ready(function () {
                     $("#timeLog").append(tableItemHtml);
 
                     // display chart
-                    chartLabels = todaysActivities;
-                    console.log(chartLabels);
-                    chartData = todaysDurations;
-                    console.log(chartData);
+                    var TodaysChartLabels = todaysActivities;
+                    console.log(TodaysChartLabels);
+                    var TodaysChartData = todaysDurations;
+                    console.log(TodaysChartData);
                 });
 
                 
