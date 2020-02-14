@@ -41,7 +41,7 @@ $(document).ready(function () {
                     // console.log(doc.id, "=> ", doc.data());
                     var data = doc.data();
                     var todaysActivities = data.activity;
-                    var todaysDurations = moment(data.duration).format("mm:ss");    
+                    var todaysDurations = moment(data.duration).format("mm:ss"); 
                     var todaysStartTimes = data.start;
                     var todaysEndTimes = data.end;
                 
