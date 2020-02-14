@@ -38,19 +38,15 @@ $(document).ready(function () {
             logOut(); 
 
             // detect if data for today already exists
-            db.collection("timelog").where("date", "==", today).where("user", "==", email).get().then(querySnapshot => {
+            db.collection("timelog").where("date", "==", today).where("user", "==", email).orderBy("start").get().then(querySnapshot => {
                 querySnapshot.forEach(function (doc) {
                     // console.log(doc.id, "=> ", doc.data());
                     var data = doc.data();
-                    
-                    
-                    // BUG currently this is displaying in the order of the random id
                     var todaysActivities = data.activity;
                     var todaysDurations = data.duration;
                     var todaysDurationsLegible = moment(data.duration).format("mm:ss"); 
                     var todaysStartTimes = data.start;
                     var todaysEndTimes = data.end;
-                    console.log(todaysActivities);
                 
                     // display data on table
                     var tableItemHtml = `
