@@ -373,8 +373,20 @@ $(document).ready(function () {
 
     // MODULE trackData: when user1 is logged in, track data for the same day 
         // READ today's date
+        // READ user 
+
         // if user1 refreshes the page, or if user1 logs out and back in, the app retreives data from the same day and displays it. 
         // if no data for same day exists, then blank table is displayed
+
+        // SUB MODULE Display table
+            // if data for today exists, parse out data in the same way it would have been displayed without a refresh
+        // END SUBMODULE
+
+        // SUB MODULE Display Chart
+            // if data for today exists, refactor data to combine the duplicates, and display as it would without a refresh
+        // END SUBMODULE
+
+    // END MODULE track data
 
 
 // END PROGRAM
