@@ -29,6 +29,8 @@ $(document).ready(function () {
             
             // Adjust nav display if user already logged in.
             $(".auth-buttons").hide(250);
+            $("#log-in-prompt").hide(250);
+            $(".inputForm").show(250);
             $("#log-out-div").slideDown(250);
             email = user.email;
             var welcomeMessage = `Welcome back, ${email}!`;
@@ -74,6 +76,8 @@ $(document).ready(function () {
             
             } else {
                 console.log("user logged out");
+                $("#log-in-prompt").show();
+                $(".inputForm").hide();
             };
 
 

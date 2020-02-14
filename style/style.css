@@ -65,7 +65,7 @@ nav {
     display: flex; 
 }
 
-#welcome-message {
+.auth-text {
     font-size: 3rem; 
     font-style: italic;
     padding: 10px 0; 
@@ -157,7 +157,7 @@ th, td {
     font-style: italic;
 }
 
-#nav-sign-in, #nav-sign-up, .timerHide, #log-out-div {
+#nav-sign-in, #nav-sign-up, .timerHide, #log-out-div, #log-in-prompt {
     display: none; 
 }
 
