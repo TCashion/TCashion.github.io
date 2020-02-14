@@ -1,4 +1,6 @@
 // READ variables
+var todaysChartData = [];
+var todaysChartLabels = [];
 var chartLabels = [];
 var chartData = [];
 var backendArray = []; 
@@ -58,10 +60,15 @@ $(document).ready(function () {
                     $("#timeLog").append(tableItemHtml);
 
                     // display chart
-                    var TodaysChartLabels = todaysActivities;
-                    console.log(TodaysChartLabels);
-                    var TodaysChartData = todaysDurations;
-                    console.log(TodaysChartData);
+                    todaysChartLabels = todaysActivities;
+                    console.log(todaysChartLabels);
+                    todaysChartData = todaysDurations;
+                    console.log(todaysChartData);
+
+                    // add today's data to chartData = chartLabels
+                    chartData.unshift(todaysChartData);
+                    chartLabels.unshift(todaysChartLabels);
+                    updateChart();
                 });
 
                 
