@@ -21,19 +21,32 @@ $(document).ready(function () {
 
     // MODULE Authentication
     
-    // check auth status and adjust nav display if user already logged in 
+    // check auth status.
         auth.onAuthStateChanged(user => {
             if (user) {
-            console.log("user logged in: ", user);
+            
+            // Adjust nav display if user already logged in.
             $(".auth-buttons").hide(250);
             $("#log-out-div").slideDown(250);
             email = user.email;
             var welcomeMessage = `Welcome back, ${email}!`;
             $("#welcome-message").html(welcomeMessage);
+            
+            // Activate logout function
             logOut(); 
+
+            // detect if data for today already exists
+            db.collection("timelog").where("date", "==", today).get().then(querySnapshot => {
+                querySnapshot.forEach(function (doc) {
+                    console.log(doc.id, "=> ", doc.data());
+                });
+            });
+            
             } else {
                 console.log("user logged out");
             };
+
+
         });
 
     // brings up sign-up form
@@ -230,7 +243,7 @@ $(document).ready(function () {
         // add data to firebase 
         db.collection("timelog").add({
             user: email, 
-            today: today,
+            date: today,
             activity: activityName,
             duration: duration,
             start: startTimeLegible,
