@@ -42,11 +42,15 @@ $(document).ready(function () {
                 querySnapshot.forEach(function (doc) {
                     // console.log(doc.id, "=> ", doc.data());
                     var data = doc.data();
+                    
+                    
+                    // BUG currently this is displaying in the order of the random id
                     var todaysActivities = data.activity;
                     var todaysDurations = data.duration;
                     var todaysDurationsLegible = moment(data.duration).format("mm:ss"); 
                     var todaysStartTimes = data.start;
                     var todaysEndTimes = data.end;
+                    console.log(todaysActivities);
                 
                     // display data on table
                     var tableItemHtml = `
@@ -59,13 +63,11 @@ $(document).ready(function () {
                         `;
                     $("#timeLog").append(tableItemHtml);
 
-                    // display chart
+                    // add today's data to chartData + chartLabels, and display chart
                     todaysChartLabels = todaysActivities;
-                    console.log(todaysChartLabels);
+                    // console.log(todaysChartLabels);
                     todaysChartData = todaysDurations;
-                    console.log(todaysChartData);
-
-                    // add today's data to chartData = chartLabels
+                    // console.log(todaysChartData);
                     chartData.unshift(todaysChartData);
                     chartLabels.unshift(todaysChartLabels);
                     updateChart();
