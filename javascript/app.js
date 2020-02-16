@@ -345,7 +345,7 @@ $(document).ready(function () {
                             } else if ( 60000 <= (data["datasets"][0]["data"][tooltipItems["index"]]) && (data["datasets"][0]["data"][tooltipItems["index"]]) < 3600000) {
                                 var m = Math.floor( (data["datasets"][0]["data"][tooltipItems["index"]]) / 60000 );
                                 return ( Math.floor( (data["datasets"][0]["data"][tooltipItems["index"]]) /1000 / 60) ) + " minutes "
-                                    + ( Math.round( ( (data["datasets"][0]["data"][tooltipItems["index"]]) - ( 60000 * m ) )/1000 ) ) + " seconds";
+                                + ( Math.round( ( (data["datasets"][0]["data"][tooltipItems["index"]]) - ( 60000 * m ) )/1000 ) ) + " seconds";
                             } else if ((data["datasets"][0]["data"][tooltipItems["index"]]) > 3600000) {
                                 var h = Math.floor( (data["datasets"][0]["data"][tooltipItems["index"]]) /1000 / 60 / 60 );
                                 m = Math.floor( (data["datasets"][0]["data"][tooltipItems["index"]]) / 60000 );
