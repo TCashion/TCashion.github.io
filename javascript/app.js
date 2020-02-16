@@ -167,6 +167,8 @@ $(document).ready(function () {
                 $("#welcome-message").html("");
                 $("#timeLog").html("");
                 $("#chartView").hide();
+                chartData = [];
+                chartLabels = [];
             });    
         });
     };
