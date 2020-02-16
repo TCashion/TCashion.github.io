@@ -342,7 +342,7 @@ $(document).ready(function () {
                             // parses out time readings in the legible format "hh hours mm minutes ss seconds"
                             if ((data["datasets"][0]["data"][tooltipItems["index"]]) < 60000 ) {
                                 return ( Math.round( (data["datasets"][0]["data"][tooltipItems["index"]]) /1000 ) ) + " seconds";
-                            } else if ( 3600000 > (data["datasets"][0]["data"][tooltipItems["index"]]) > 60000) {
+                            } else if ( 60000 <= (data["datasets"][0]["data"][tooltipItems["index"]]) && (data["datasets"][0]["data"][tooltipItems["index"]]) < 3600000) {
                                 var m = Math.floor( (data["datasets"][0]["data"][tooltipItems["index"]]) / 60000 );
                                 return ( Math.floor( (data["datasets"][0]["data"][tooltipItems["index"]]) /1000 / 60) ) + " minutes "
                                     + ( Math.round( ( (data["datasets"][0]["data"][tooltipItems["index"]]) - ( 60000 * m ) )/1000 ) ) + " seconds";
@@ -351,7 +351,8 @@ $(document).ready(function () {
                                 m = Math.floor( (data["datasets"][0]["data"][tooltipItems["index"]]) / 60000 );
                                 return ( Math.floor( (data["datasets"][0]["data"][tooltipItems["index"]]) /1000 / 60 / 60) ) + " hours "
                                     + ( Math.floor( ( (data["datasets"][0]["data"][tooltipItems["index"]]) - (3600000 * h) )/1000 / 60) ) + " minutes "
-                                    + ( Math.round( ( (data["datasets"][0]["data"][tooltipItems["index"]]) - ( 60000 * m ) )/1000 ) ) + " seconds";
+                                + ( Math.floor( ( (data["datasets"][0]["data"][tooltipItems["index"]]) - (3600000 * h) )/1000 / 60) ) + " minutes "
+                                + ( Math.round( ( (data["datasets"][0]["data"][tooltipItems["index"]]) - ( 60000 * m ) )/1000 ) ) + " seconds";
                             };
                         }
                     }
