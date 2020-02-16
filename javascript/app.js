@@ -161,14 +161,14 @@ $(document).ready(function () {
     // logout defined for reusability
     function logOut() {
         $("#log-out-button").on("click", function () {
+            chartData.splice(0,chartData.length);
+            chartLabels.splice(0,chartLabels.length);
             auth.signOut().then(() => {
                 $("#log-out-div").hide(250);
                 $(".auth-buttons").show(250);
                 $("#welcome-message").html("");
                 $("#timeLog").html("");
                 $("#chartView").hide();
-                chartData.splice(0,chartData.length);
-                chartLabels.splice(0,chartLabels.length);
             });    
         });
     };
