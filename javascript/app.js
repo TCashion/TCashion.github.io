@@ -47,7 +47,7 @@ $(document).ready(function () {
                     var data = doc.data();
                     var todaysActivities = data.activity;
                     var todaysDurations = data.duration;
-                    var todaysDurationsLegible = moment(data.duration).format("mm:ss"); 
+                    var todaysDurationsLegible = moment.utc(data.duration).format("HH:mm:ss"); 
                     var todaysStartTimes = data.start;
                     var todaysEndTimes = data.end;
                 
@@ -261,9 +261,7 @@ $(document).ready(function () {
     function stopClock() {
 
         // at time of button click, measure and display duration of current time session
-        var H = 0;
-        H = H + Math.floor( duration / 3600000);
-        durationLegible = moment(duration).format(`${H}:mm:ss`).toString(); 
+        durationLegible = moment.utc(duration).format("HH:mm:ss").toString(); 
         var durationDisplay = `
             <td>${durationLegible}</td>
         `;
