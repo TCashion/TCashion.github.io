@@ -261,7 +261,9 @@ $(document).ready(function () {
     function stopClock() {
 
         // at time of button click, measure and display duration of current time session
-        durationLegible = moment(duration).format("mm:ss").toString(); 
+        var H = 0;
+        H = H + Math.floor( duration / 3600000);
+        durationLegible = moment(duration).format(`${H}:mm:ss`).toString(); 
         var durationDisplay = `
             <td>${durationLegible}</td>
         `;
