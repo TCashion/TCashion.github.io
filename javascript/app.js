@@ -350,7 +350,6 @@ $(document).ready(function () {
                                 var h = Math.floor( (data["datasets"][0]["data"][tooltipItems["index"]]) /1000 / 60 / 60 );
                                 m = Math.floor( (data["datasets"][0]["data"][tooltipItems["index"]]) / 60000 );
                                 return ( Math.floor( (data["datasets"][0]["data"][tooltipItems["index"]]) /1000 / 60 / 60) ) + " hours "
-                                    + ( Math.floor( ( (data["datasets"][0]["data"][tooltipItems["index"]]) - (3600000 * h) )/1000 / 60) ) + " minutes "
                                 + ( Math.floor( ( (data["datasets"][0]["data"][tooltipItems["index"]]) - (3600000 * h) )/1000 / 60) ) + " minutes "
                                 + ( Math.round( ( (data["datasets"][0]["data"][tooltipItems["index"]]) - ( 60000 * m ) )/1000 ) ) + " seconds";
                             };
