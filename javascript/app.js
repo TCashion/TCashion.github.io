@@ -70,9 +70,25 @@ $(document).ready(function () {
                     chartData.unshift(todaysChartData);
                     chartLabels.unshift(todaysChartLabels);
                     updateChart();
-                });
 
-                
+
+                    // WORKING ON FINDING DUPLICATES.
+
+                    for (i = 0; i < chartLabels.length; i++) {
+                        for (n = 0; n < chartLabels.length; n++)  {
+                            if (chartLabels[i] === chartLabels[n]&& i !== n && i > n) {
+                            
+                            console.log(`${n} and ${i} are duplicates AKA ${chartLabels[n]} and ${chartLabels[i]}`)
+                            // //add duration value of duplicate to preceding copy 
+                            // chartData[i]=chartData[i] + chartData[n];
+                            
+                            // //remove the duplicates from the arrays
+                            // chartData.splice(n , 1);
+                            // chartLabels.splice(n, 1);
+                            };
+                        };
+                    };
+                });          
             });
             
             } else {
