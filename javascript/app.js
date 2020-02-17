@@ -1,4 +1,3 @@
-// READ variables
 var todaysChartData = [];
 var todaysChartLabels = [];
 var chartLabels = [];
@@ -6,7 +5,6 @@ var chartData = [];
 
 $(document).ready(function () {   
 
-    // READ variables
     var activityName;
     var startTime;
     var startTimeLegible;
