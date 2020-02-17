@@ -19,8 +19,6 @@ $(document).ready(function () {
     var now; 
     var duration;
     var durationLegible;
-
-    // MODULE Authentication
     
     // check auth status.
         auth.onAuthStateChanged(user => {
@@ -165,24 +163,7 @@ $(document).ready(function () {
         });     
     });
 
-    // logout defined for reusability
-    function logOut() {
-        $("#log-out-button").on("click", function () {
-            chartData.splice(0,chartData.length);
-            chartLabels.splice(0,chartLabels.length);
-            auth.signOut().then(() => {
-                $("#log-out-div").hide(250);
-                $(".auth-buttons").show(250);
-                $("#welcome-message").html("");
-                $("#timeLog").html("");
-                $("#chartView").hide();
-            });    
-        });
-    };
-    // END MODULE Authentication
-
-
-    // MODULE trackTime: on click of "start time" button: 
+    // on click of "start time" button: 
     $("#startTimer").on("click", function (event) {
         event.preventDefault();
 
@@ -209,10 +190,8 @@ $(document).ready(function () {
         // run stopwatch function
         runClock();
     });
-    // END MODULE trackTime
 
-
-    // MODULE logTime:  on click of "Stop" button, timer stops and disappears, form and "start timer" button reappear.
+    // on click of "Stop" button, timer stops and disappears, form and "start timer" button reappear.
     $("#stopTimer").on("click", function(event) {
         event.preventDefault();
 
@@ -237,10 +216,22 @@ $(document).ready(function () {
         updateChart();
 
     });
-    // END MODULE logTime
 
+    // FUNCTIONS defined for reusability
+    function logOut() {
+        $("#log-out-button").on("click", function () {
+            chartData.splice(0,chartData.length);
+            chartLabels.splice(0,chartLabels.length);
+            auth.signOut().then(() => {
+                $("#log-out-div").hide(250);
+                $(".auth-buttons").show(250);
+                $("#welcome-message").html("");
+                $("#timeLog").html("");
+                $("#chartView").hide();
+            });    
+        });
+    };
 
-    // STOPWATCH FUNCTION
     function runClock() {
     
         // calls out html element where time will be displayed
@@ -300,10 +291,7 @@ $(document).ready(function () {
         chartLabels.push(activityName);
         chartData.push(duration);           
     };
-    // END STOPWATCH FUNCTION
 
-
-    // CHART FUNCTION
     function updateChart () {
         var chart = $("#chartView");
         var myDoughnutChart = new Chart(chart, {
@@ -358,81 +346,4 @@ $(document).ready(function () {
             }
         });
     };
-    // END CHART FUNCTION
-
-    
 });
-
-
-
-
-
-
-
-
-// FUNCTIONALITY
-
-    // Capture name of activity and assign to variable "activityName"
-    // At time of "stop" click capture time
-    // Assign time to a variable "currentTime"
-    // Display activityName and currentTime in table row
-
-
-// Activity selector: can this be a dropdown? with the option to manually enter something?
-// For chart, it will be important to have strings match
-
-
-// Psuedocode:
-// PROGRAM productivityTimer
-    // READ currentTime
-    // READ accumulatedTime
-    // READ activityName
-
-    // MODULE trackTime
-        // ^ on click of "start time" button
-            // ^ HIDE "start time" button and input form
-            // ^ SHOW timer and "stop timer" button
-            // ^ ASSIGN var currentTime = present time at time of button click and activityName = string in the input form at time of click
-            // START timer
-            // ^ DISPLAY activityName as string in column 1 of the table
-            // ^ DISPLAY activityName as label on chart
-            // ^ DISPLAY currentTime as string in column 3 of the table
-                // other columns can have placeholder of "--"
-    // END MODULE
-
-    // MODULE logTime
-        // ^ on click of "stop" button
-            // ^ HIDE "stop" button and timer
-            // ^ SHOW "start time" button and input form
-            // ASSIGN var accumulatedTime = time shown on timer at time of button click
-            // ^ ASSIGN var currentTime = present time at time of button click
-            // DISPLAY accumulatedTime as string in column 2 of table
-            // ^ DISPLAY currentTime as string in column 4 of table
-            // RUN module displayChart
-    // END MODULE
-
-    // MODULE displayChart
-        // IF all of the table data values !== "--", then assign chart value to accumulatedTime
-        // fit current values into chart so that they accumulate
-            // more.......... 
-    // END MODULE
-
-    // MODULE trackData: when user1 is logged in, track data for the same day 
-        // READ today's date
-        // READ user 
-
-        // if user1 refreshes the page, or if user1 logs out and back in, the app retreives data from the same day and displays it. 
-        // if no data for same day exists, then blank table is displayed
-
-        // SUB MODULE Display table
-            // if data for today exists, parse out data in the same way it would have been displayed without a refresh
-        // END SUBMODULE
-
-        // SUB MODULE Display Chart
-            // if data for today exists, refactor data to combine the duplicates, and display as it would without a refresh
-        // END SUBMODULE
-
-    // END MODULE track data
-
-
-// END PROGRAM
