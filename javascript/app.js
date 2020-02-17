@@ -3,7 +3,6 @@ var todaysChartData = [];
 var todaysChartLabels = [];
 var chartLabels = [];
 var chartData = [];
-var backendArray = []; 
 
 $(document).ready(function () {   
 
@@ -73,8 +72,7 @@ $(document).ready(function () {
                 for (i = 0; i < chartLabels.length; i++) {
                     for (n = i + 1; n < chartLabels.length; n++)  {
                         if (chartLabels[i] === chartLabels[n]&& i !== n && i < n) {
-                        
-                        console.log(`duplicates at i= ${i} and n = ${n}. Values are ${chartLabels[i]} and ${chartLabels[n]}`)
+                        console.log(`duplicates at i= ${i} and n = ${n}. Values are ${chartLabels[i]} and ${chartLabels[n]}`);
                         chartData[i]=chartData[i] + chartData[n];
                         
                         //remove the duplicates from the arrays
@@ -259,10 +257,6 @@ $(document).ready(function () {
 
             // converts the time into a legible string format
             var durationLegible = moment(duration).format(`${H}:mm:ss:S`);
-                // test
-            console.log("startTime: " + startTime); 
-            console.log("now: " + now);
-            console.log("now - startTime: " + duration);
 
             // Displays the running timer in the DOM of the #timer element
             timer.textContent = durationLegible;
@@ -277,9 +271,6 @@ $(document).ready(function () {
             <td>${durationLegible}</td>
         `;
         $("#replace1").replaceWith(durationDisplay);
-
-        // IF activity name is already listed, ADD duration to existing object to show cumulative time on graph, ELSE push new data to arrays 
-        backendArray.push({"label": activityName, "duration": duration, "startTime": startTimeLegible, "endTime": stopTimeLegible});
 
         // reset variables and DOM of timer element to 00 : 00
         clearInterval(handle);
@@ -301,19 +292,13 @@ $(document).ready(function () {
         // combines data if the activityName already exists
         for ( var i = 0; i < (chartLabels.length); i++) {
             if ( activityName === chartLabels[i]) {
-                console.log("duplicate");
                 chartData[i] = chartData[i] + duration ;
                 return;
             } 
         };
 
         chartLabels.push(activityName);
-        chartData.push(duration);
-        console.log("chartLabels : " + chartLabels);
-        console.log("chartData : " + chartData);
-        console.log("backendArray : " + backendArray);
-
-             
+        chartData.push(duration);           
     };
     // END STOPWATCH FUNCTION
 
