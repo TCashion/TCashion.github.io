@@ -53,7 +53,7 @@ $(document).ready(function () {
                             <td>${todaysDurationsLegible}</td>
                             <td>${todaysStartTimes}</td>
                             <td>${todaysEndTimes}</td>
-                            <td><a href="" class="delete-link">X</td>
+                            <td><a href="" class="delete-link">X</a></td>
                         </tr>
                         `;
                     $("#timeLog").append(tableItemHtml);
@@ -185,7 +185,7 @@ $(document).ready(function () {
                 <td id="replace1">--:--</td>
                 <td>${startTimeLegible}</td>
                 <td id="replace2">--:--</td>
-                <td><a href="" class="delete-link">X</td>
+                <td><a href="" class="delete-link">X</a></td>
             </tr>
         `;
         $("#timeLog").append(tableItemHtml);
@@ -206,7 +206,7 @@ $(document).ready(function () {
         stopTime = moment();
         stopTimeLegible = moment(stopTime).format("hh:mm:ss a").toString();
         var endTime = `
-            <td>${stopTimeLegible}<td>
+            <td>${stopTimeLegible}</td>
         `;
 
             // DISPLAY currentTime as string in column 4 of table
