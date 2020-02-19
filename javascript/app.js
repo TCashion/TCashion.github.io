@@ -32,7 +32,7 @@ $(document).ready(function () {
             var welcomeMessage = `Welcome back, ${email}!`;
             $("#welcome-message").html(welcomeMessage);
             
-            // Activate logout function
+            // Activate logout 
             logOut(); 
 
             // detect if data for today already exists
@@ -53,6 +53,7 @@ $(document).ready(function () {
                             <td>${todaysDurationsLegible}</td>
                             <td>${todaysStartTimes}</td>
                             <td>${todaysEndTimes}</td>
+                            <td><a href="" id="delete-link">X</td>
                         </tr>
                         `;
                     $("#timeLog").append(tableItemHtml);
@@ -75,6 +76,9 @@ $(document).ready(function () {
                         chartData.splice(n , 1);
                         chartLabels.splice(n, 1);
                         updateChart();
+
+                        // activite delete capability
+                        deleteItem(); 
                         };
                     };
                 };
@@ -181,6 +185,7 @@ $(document).ready(function () {
                 <td id="replace1">--:--</td>
                 <td>${startTimeLegible}</td>
                 <td id="replace2">--:--</td>
+                <td><a href="" id="delete-link">X</td>
             </tr>
         `;
         $("#timeLog").append(tableItemHtml);
@@ -342,6 +347,15 @@ $(document).ready(function () {
                     text: "Today's time allocations"
                 },
             }
+        });
+    };
+
+    function deleteItem() {
+        $("#delete-link").on("click", function(event) {
+            event.preventDefault();
+
+            
+
         });
     };
 });
