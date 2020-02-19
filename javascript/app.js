@@ -360,8 +360,10 @@ $(document).ready(function () {
             
             // removes row from the table
             $(this).parent().parent().css("display", "none");
-            
-
+            var activityValue = $(this).parent().prev().prev().prev().prev().html();
+            var startTimeValue = $(this).parent().prev().prev().html();
+            var dataValue = {activityValue, startTimeValue};
+            console.log(dataValue);
         });
     };
 });
