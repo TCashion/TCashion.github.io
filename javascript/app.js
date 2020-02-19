@@ -53,7 +53,9 @@ $(document).ready(function () {
                             <td>${todaysDurationsLegible}</td>
                             <td>${todaysStartTimes}</td>
                             <td>${todaysEndTimes}</td>
-                            <td><a href="" class="delete-link">X</a></td>
+                            <td>
+                                <a href="" class="delete-link">X</a>
+                            </td>
                         </tr>
                         `;
                     $("#timeLog").append(tableItemHtml);
@@ -185,7 +187,9 @@ $(document).ready(function () {
                 <td id="replace1">--:--</td>
                 <td>${startTimeLegible}</td>
                 <td id="replace2">--:--</td>
-                <td><a href="" class="delete-link">X</a></td>
+                <td>
+                    <a href="" class="delete-link">X</a>
+                </td>
             </tr>
         `;
         $("#timeLog").append(tableItemHtml);
@@ -353,7 +357,9 @@ $(document).ready(function () {
     function deleteItem() {
         $(".delete-link").on("click", function(event) {
             event.preventDefault();
-
+            
+            // removes row from the table
+            $(this).parent().parent().css("display", "none");
             
 
         });
