@@ -78,12 +78,11 @@ $(document).ready(function () {
                         chartData.splice(n , 1);
                         chartLabels.splice(n, 1);
                         updateChart();
-
-                        // activite delete capability
-                        deleteItem(); 
                         };
                     };
                 };
+                // activite delete capability
+                deleteItem(); 
             });
             
             } else {
@@ -360,6 +359,7 @@ $(document).ready(function () {
             
             // removes row from the table
             $(this).parent().parent().css("display", "none");
+            console.log("done")
             var activityValue = $(this).parent().prev().prev().prev().prev().html();
             var startTimeValue = $(this).parent().prev().prev().html();
             var endTimeValue = $(this).parent().prev().html(); 
