@@ -256,7 +256,7 @@ $(document).ready(function () {
             H = H + Math.floor( duration / 3600000);
 
             // converts the time into a legible string format
-            var durationLegible = moment(duration).format(`${H}:mm:ss:S`);
+            var durationLegible = activityName + ": " + moment(duration).format(`${H}:mm:ss:S`);
 
             // Displays the running timer in the DOM of the #timer element
             timer.textContent = durationLegible;
