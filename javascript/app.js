@@ -362,7 +362,9 @@ $(document).ready(function () {
             $(this).parent().parent().css("display", "none");
             var activityValue = $(this).parent().prev().prev().prev().prev().html();
             var startTimeValue = $(this).parent().prev().prev().html();
-            var dataValue = {activityValue, startTimeValue};
+            var endTimeValue = $(this).parent().prev().html(); 
+            var durationValue = moment(endTimeValue, "hh:mm:ss a").format("x") - moment(startTimeValue, "hh:mm:ss a").format("x")
+            var dataValue = {activityValue, durationValue, startTimeValue, endTimeValue};
             console.log(dataValue);
         });
     };
