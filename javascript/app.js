@@ -70,7 +70,7 @@ $(document).ready(function () {
                 // for the chart on refresh, remove duplicate labels & add duration data
                 for (i = 0; i < chartLabels.length; i++) {
                     for (n = i + 1; n < chartLabels.length; n++)  {
-                        if (chartLabels[i] === chartLabels[n]&& i !== n && i < n) {
+                        if (chartLabels[i] === chartLabels[n] && i !== n && i < n) {
                         console.log(`duplicates at i= ${i} and n = ${n}. Values are ${chartLabels[i]} and ${chartLabels[n]}`);
                         chartData[i]=chartData[i] + chartData[n];
                         
@@ -359,7 +359,6 @@ $(document).ready(function () {
             
             // removes row from the table
             $(this).parent().parent().css("display", "none");
-            console.log("done")
             var activityValue = $(this).parent().prev().prev().prev().prev().html();
             var startTimeValue = $(this).parent().prev().prev().html();
             var endTimeValue = $(this).parent().prev().html(); 
@@ -367,14 +366,13 @@ $(document).ready(function () {
             var dataValue = {activityValue, durationValue, startTimeValue, endTimeValue};
             console.log(dataValue);
             
-            // currently, the above code runs three times so subtracts too many. 
-            // for (i = 0; i < chartLabels.length; i++ ) {
-            //     if (chartLabels[i] === activityValue) {
-            //         chartData[i] = chartData[i] - durationValue;
-            //     };
-            // };
+            for (i = 0; i < chartLabels.length; i++ ) {
+                if (chartLabels[i] === activityValue) {
+                    chartData[i] = chartData[i] - durationValue;
+                };
+            };
 
-            // updateChart(); 
+            updateChart(); 
         });
     };
 });
