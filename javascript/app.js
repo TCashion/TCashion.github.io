@@ -70,20 +70,19 @@ $(document).ready(function () {
                 // for the chart on refresh, remove duplicate labels & add duration data
                 for (i = 0; i < chartLabels.length; i++) {
                     for (n = i + 1; n < chartLabels.length; n++)  {
-                        if (chartLabels[i] === chartLabels[n]&& i !== n && i < n) {
+                        if (chartLabels[i] === chartLabels[n] && i !== n && i < n) {
                         console.log(`duplicates at i= ${i} and n = ${n}. Values are ${chartLabels[i]} and ${chartLabels[n]}`);
                         chartData[i]=chartData[i] + chartData[n];
                         
                         //remove the duplicates from the arrays
-                        chartData.splice(n , 1);
+                        chartData.splice(n, 1);
                         chartLabels.splice(n, 1);
                         updateChart();
-
-                        // activite delete capability
-                        deleteItem(); 
                         };
                     };
                 };
+                // activite delete capability
+                deleteItem(); 
             });
             
             } else {
@@ -188,7 +187,7 @@ $(document).ready(function () {
                 <td>${startTimeLegible}</td>
                 <td id="replace2">--:--</td>
                 <td>
-                    <a href="" class="delete-link">X</a>
+                    <a href="" id="replace3"></a>
                 </td>
             </tr>
         `;
@@ -215,6 +214,7 @@ $(document).ready(function () {
 
             // DISPLAY currentTime as string in column 4 of table
         $("#replace2").replaceWith(endTime);
+        $("#replace3").replaceWith(`<a href="" class="delete-link">X</a>`);
 
         // run stopwatch stop function
         stopClock();
@@ -222,6 +222,8 @@ $(document).ready(function () {
         // run update chart function
         updateChart();
 
+        // activate delete-item capability
+        deleteItem();
     });
 
     // FUNCTIONS defined for reusability
@@ -358,10 +360,27 @@ $(document).ready(function () {
         $(".delete-link").on("click", function(event) {
             event.preventDefault();
             
-            // removes row from the table
+            // removes row from the table and adds row data into an array
             $(this).parent().parent().css("display", "none");
+            var activityValue = $(this).parent().prev().prev().prev().prev().html();
+            var startTimeValue = $(this).parent().prev().prev().html();
+            var endTimeValue = $(this).parent().prev().html(); 
+            var durationValue = moment(endTimeValue, "hh:mm:ss a").format("x") - moment(startTimeValue, "hh:mm:ss a").format("x");
+            var dataValue = {activityValue, durationValue, startTimeValue, endTimeValue};
+            console.log(dataValue);
             
+            for (i = 0; i < chartLabels.length; i++ ) {
+                if (chartLabels[i] === activityValue) {
+                    chartData[i] = chartData[i] - durationValue;
+                    // re-parse duration back into milliseconds is not perfect math, so this eliminates the chart data if the new value is less than two seconds
+                    if (chartData[i] < 2000) {
+                        chartData.splice(i, 1);
+                        chartLabels.splice(i, 1);
+                    }
+                };
+            };
 
+            updateChart(); 
         });
     };
 });
