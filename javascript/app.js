@@ -313,7 +313,7 @@ $(document).ready(function () {
                 datasets: [
                     {   
                         label: "Duration of Activities",
-                        backgroundColor: ["#FF6384","#FFCD56","#36A2EB","#4BC0C0","#33A02C","#FB9C9B","#E31A1C","#FDBF6F","#CAB2D6","#6A3D9A","#FFFF99"],
+                        backgroundColor: ["#FF6384","#FFCD56","#36A2EB","#4BC0C0","#33A02C","#FB9C9B","#E31A1C","#FDBF6F","#CAB2D6","#6A3D9A","#FFFF99","#FF6384","#FFCD56","#36A2EB","#4BC0C0","#33A02C","#FB9C9B","#E31A1C","#FDBF6F","#CAB2D6","#6A3D9A","#FFFF99"],
                         data: chartData,
                     }
                 ]
