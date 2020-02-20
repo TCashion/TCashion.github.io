@@ -366,6 +366,15 @@ $(document).ready(function () {
             var durationValue = moment(endTimeValue, "hh:mm:ss a").format("x") - moment(startTimeValue, "hh:mm:ss a").format("x")
             var dataValue = {activityValue, durationValue, startTimeValue, endTimeValue};
             console.log(dataValue);
+            
+            // currently, the above code runs three times so subtracts too many. 
+            // for (i = 0; i < chartLabels.length; i++ ) {
+            //     if (chartLabels[i] === activityValue) {
+            //         chartData[i] = chartData[i] - durationValue;
+            //     };
+            // };
+
+            // updateChart(); 
         });
     };
 });
