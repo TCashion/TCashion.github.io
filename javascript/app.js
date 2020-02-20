@@ -75,7 +75,7 @@ $(document).ready(function () {
                         chartData[i]=chartData[i] + chartData[n];
                         
                         //remove the duplicates from the arrays
-                        chartData.splice(n , 1);
+                        chartData.splice(n, 1);
                         chartLabels.splice(n, 1);
                         updateChart();
                         };
@@ -365,13 +365,18 @@ $(document).ready(function () {
             var activityValue = $(this).parent().prev().prev().prev().prev().html();
             var startTimeValue = $(this).parent().prev().prev().html();
             var endTimeValue = $(this).parent().prev().html(); 
-            var durationValue = moment(endTimeValue, "hh:mm:ss a").format("x") - moment(startTimeValue, "hh:mm:ss a").format("x")
+            var durationValue = moment(endTimeValue, "hh:mm:ss a").format("x") - moment(startTimeValue, "hh:mm:ss a").format("x");
             var dataValue = {activityValue, durationValue, startTimeValue, endTimeValue};
             console.log(dataValue);
             
             for (i = 0; i < chartLabels.length; i++ ) {
                 if (chartLabels[i] === activityValue) {
                     chartData[i] = chartData[i] - durationValue;
+                    // re-parse duration back into milliseconds is not perfect math, so this eliminates the chart data if the new value is less than two seconds
+                    if (chartData[i] < 2000) {
+                        chartData.splice(i, 1);
+                        chartLabels.splice(i, 1);
+                    }
                 };
             };
 
