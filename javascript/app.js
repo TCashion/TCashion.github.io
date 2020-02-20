@@ -40,6 +40,7 @@ $(document).ready(function () {
                 querySnapshot.forEach(function (doc) {
                     // console.log(doc.id, "=> ", doc.data());
                     var data = doc.data();
+                    var dataID = doc.id; 
                     var todaysActivities = data.activity;
                     var todaysDurations = data.duration;
                     var todaysDurationsLegible = moment.utc(data.duration).format("HH:mm:ss"); 
@@ -48,7 +49,7 @@ $(document).ready(function () {
                 
                     // display data on table
                     var tableItemHtml = `
-                        <tr>
+                        <tr id="${dataID}">
                             <td>${todaysActivities}</td>
                             <td>${todaysDurationsLegible}</td>
                             <td>${todaysStartTimes}</td>
@@ -256,7 +257,7 @@ $(document).ready(function () {
             H = H + Math.floor( duration / 3600000);
 
             // converts the time into a legible string format
-            var durationLegible = moment(duration).format(`${H}:mm:ss:S`);
+            var durationLegible = activityName + ": " + moment(duration).format(`${H}:mm:ss:S`);
 
             // Displays the running timer in the DOM of the #timer element
             timer.textContent = durationLegible;
@@ -362,12 +363,14 @@ $(document).ready(function () {
             
             // removes row from the table and adds row data into an array
             $(this).parent().parent().css("display", "none");
+            var docID = $(this).parent().parent().attr("id");
             var activityValue = $(this).parent().prev().prev().prev().prev().html();
             var startTimeValue = $(this).parent().prev().prev().html();
             var endTimeValue = $(this).parent().prev().html(); 
             var durationValue = moment(endTimeValue, "hh:mm:ss a").format("x") - moment(startTimeValue, "hh:mm:ss a").format("x");
             var dataValue = {activityValue, durationValue, startTimeValue, endTimeValue};
             console.log(dataValue);
+            console.log(docID);
             
             for (i = 0; i < chartLabels.length; i++ ) {
                 if (chartLabels[i] === activityValue) {
@@ -381,6 +384,9 @@ $(document).ready(function () {
             };
 
             updateChart(); 
+
+            // deletes item from firebase db so it does not reappear on refresh
+            db.collection("timelog").doc(docID).delete();
         });
     };
 });
