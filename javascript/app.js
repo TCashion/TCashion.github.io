@@ -187,7 +187,7 @@ $(document).ready(function () {
                 <td>${startTimeLegible}</td>
                 <td id="replace2">--:--</td>
                 <td>
-                    <a href="" class="delete-link">X</a>
+                    <a href="" id="replace3"></a>
                 </td>
             </tr>
         `;
@@ -214,6 +214,7 @@ $(document).ready(function () {
 
             // DISPLAY currentTime as string in column 4 of table
         $("#replace2").replaceWith(endTime);
+        $("#replace3").replaceWith(`<a href="" class="delete-link">X</a>`);
 
         // run stopwatch stop function
         stopClock();
@@ -221,6 +222,8 @@ $(document).ready(function () {
         // run update chart function
         updateChart();
 
+        // activate delete-item capability
+        deleteItem();
     });
 
     // FUNCTIONS defined for reusability
@@ -357,7 +360,7 @@ $(document).ready(function () {
         $(".delete-link").on("click", function(event) {
             event.preventDefault();
             
-            // removes row from the table
+            // removes row from the table and adds row data into an array
             $(this).parent().parent().css("display", "none");
             var activityValue = $(this).parent().prev().prev().prev().prev().html();
             var startTimeValue = $(this).parent().prev().prev().html();
