@@ -183,7 +183,7 @@ $(document).ready(function () {
 
             // DISPLAY activityName as string in column 1 of the table and currentTime as string in column 3 of the table
         var tableItemHtml = `
-            <tr>
+            <tr id="data-id">
                 <td>${activityName}</td>
                 <td id="replace1">--:--</td>
                 <td>${startTimeLegible}</td>
@@ -289,6 +289,14 @@ $(document).ready(function () {
             duration: duration,
             start: startTimeLegible,
             end: stopTimeLegible
+        });
+
+        db.collection("timelog").where("date", "==", today).where("activity", "==", activityName).get().then(querySnapshot => {
+            querySnapshot.forEach(function (doc) {
+                console.log(doc.id);
+                var dataID = doc.id;
+                $("#data-id").attr("id", dataID);
+            });
         });
 
         // combines data if the activityName already exists
