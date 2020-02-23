@@ -291,6 +291,7 @@ $(document).ready(function () {
             end: stopTimeLegible
         });
 
+        // adds firebase id to table row so user can delete without refreshing (this happens automatically on refresh)
         db.collection("timelog").where("date", "==", today).where("activity", "==", activityName).get().then(querySnapshot => {
             querySnapshot.forEach(function (doc) {
                 console.log(doc.id);
