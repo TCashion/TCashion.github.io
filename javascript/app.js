@@ -66,6 +66,7 @@ $(document).ready(function () {
                     todaysChartData = todaysDurations;
                     chartData.unshift(todaysChartData);
                     chartLabels.unshift(todaysChartLabels);
+                    updateChart();
                 });    
                 
                 // for the chart on refresh, remove duplicate labels & add duration data
