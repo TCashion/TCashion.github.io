@@ -31,6 +31,7 @@ $(document).ready(function () {
             $("#log-out-div").slideDown(250);
             email = user.email;
             uid = user.uid;
+            console.log(uid);
             var welcomeMessage = `Welcome back, ${email}!`;
             $("#welcome-message").html(welcomeMessage);
             
