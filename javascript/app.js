@@ -14,6 +14,7 @@ $(document).ready(function () {
     var timer;
     var today = moment().format("LL");
     var email; 
+    var uid;
     var now; 
     var duration;
     var durationLegible;
@@ -29,6 +30,7 @@ $(document).ready(function () {
             $(".inputForm").show(250);
             $("#log-out-div").slideDown(250);
             email = user.email;
+            uid = user.uid;
             var welcomeMessage = `Welcome back, ${email}!`;
             $("#welcome-message").html(welcomeMessage);
             
@@ -36,7 +38,7 @@ $(document).ready(function () {
             logOut(); 
 
             // detect if data for today already exists
-            db.collection("timelog").where("date", "==", today).where("user", "==", email).orderBy("start").get().then(querySnapshot => {
+            db.collection("timelog").where("date", "==", today).where("userID", "==", uid).orderBy("start").get().then(querySnapshot => {
                 querySnapshot.forEach(function (doc) {
                     // console.log(doc.id, "=> ", doc.data());
                     var data = doc.data();
@@ -66,6 +68,7 @@ $(document).ready(function () {
                     todaysChartData = todaysDurations;
                     chartData.unshift(todaysChartData);
                     chartLabels.unshift(todaysChartLabels);
+                    updateChart();
                 });    
                 
                 // for the chart on refresh, remove duplicate labels & add duration data
@@ -182,7 +185,7 @@ $(document).ready(function () {
 
             // DISPLAY activityName as string in column 1 of the table and currentTime as string in column 3 of the table
         var tableItemHtml = `
-            <tr>
+            <tr id="data-id">
                 <td>${activityName}</td>
                 <td id="replace1">--:--</td>
                 <td>${startTimeLegible}</td>
@@ -282,12 +285,22 @@ $(document).ready(function () {
 
         // add data to firebase 
         db.collection("timelog").add({
-            user: email, 
+            userID: uid,
+            userEmail: email, 
             date: today,
             activity: activityName,
             duration: duration,
             start: startTimeLegible,
             end: stopTimeLegible
+        });
+
+        // adds firebase id to table row so user can delete without refreshing (this happens automatically on refresh)
+        db.collection("timelog").where("date", "==", today).where("activity", "==", activityName).get().then(querySnapshot => {
+            querySnapshot.forEach(function (doc) {
+                console.log(doc.id);
+                var dataID = doc.id;
+                $("#data-id").attr("id", dataID);
+            });
         });
 
         // combines data if the activityName already exists
@@ -313,7 +326,7 @@ $(document).ready(function () {
                 datasets: [
                     {   
                         label: "Duration of Activities",
-                        backgroundColor: ["#FF6384","#FFCD56","#36A2EB","#4BC0C0","#33A02C","#FB9C9B","#E31A1C","#FDBF6F","#CAB2D6","#6A3D9A","#FFFF99"],
+                        backgroundColor: ["#FF6384","#FFCD56","#36A2EB","#4BC0C0","#33A02C","#FB9C9B","#E31A1C","#FDBF6F","#CAB2D6","#6A3D9A","#FFFF99","#FF6384","#FFCD56","#36A2EB","#4BC0C0","#33A02C","#FB9C9B","#E31A1C","#FDBF6F","#CAB2D6","#6A3D9A","#FFFF99"],
                         data: chartData,
                     }
                 ]
