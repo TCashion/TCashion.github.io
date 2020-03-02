@@ -29,7 +29,7 @@ $(document).ready(function () {
             $("#chartView").show(0);
             $(".inputForm").show(250);
             $("#log-out-div").slideDown(250);
-            email = user.userEmail;
+            email = user.email;
             uid = user.uid;
             console.log(uid, email) ;
             var welcomeMessage = `Welcome back, ${email}!`;
