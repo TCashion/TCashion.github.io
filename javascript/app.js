@@ -14,7 +14,7 @@ $(document).ready(function () {
     var timer;
     var today = moment().format("LL");
     var email; 
-    var userID;
+    var uid;
     var now; 
     var duration;
     var durationLegible;
