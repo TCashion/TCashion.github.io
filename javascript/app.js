@@ -31,8 +31,6 @@ $(document).ready(function () {
             $("#log-out-div").slideDown(250);
             email = user.email;
             uid = user.uid;
-            console.log(uid);
-            console.log(email);
             var welcomeMessage = `Welcome back, ${email}!`;
             $("#welcome-message").html(welcomeMessage);
             
@@ -42,7 +40,6 @@ $(document).ready(function () {
             // detect if data for today already exists
             db.collection("timelog").where("date", "==", today).where("userID", "==", uid).orderBy("start").get().then(querySnapshot => {
                 querySnapshot.forEach(function (doc) {
-                    // console.log(doc.id, "=> ", doc.data());
                     var data = doc.data();
                     var dataID = doc.id; 
                     var todaysActivities = data.activity;
@@ -77,7 +74,6 @@ $(document).ready(function () {
                 for (i = 0; i < chartLabels.length; i++) {
                     for (n = i + 1; n < chartLabels.length; n++)  {
                         if (chartLabels[i] === chartLabels[n] && i !== n && i < n) {
-                        console.log(`duplicates at i= ${i} and n = ${n}. Values are ${chartLabels[i]} and ${chartLabels[n]}`);
                         chartData[i]=chartData[i] + chartData[n];
                         
                         //remove the duplicates from the arrays
@@ -384,8 +380,6 @@ $(document).ready(function () {
             var endTimeValue = $(this).parent().prev().html(); 
             var durationValue = moment(endTimeValue, "hh:mm:ss a").format("x") - moment(startTimeValue, "hh:mm:ss a").format("x");
             var dataValue = {activityValue, durationValue, startTimeValue, endTimeValue};
-            console.log(dataValue);
-            console.log(docID);
             
             for (i = 0; i < chartLabels.length; i++ ) {
                 if (chartLabels[i] === activityValue) {
