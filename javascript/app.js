@@ -30,8 +30,8 @@ $(document).ready(function () {
             $(".inputForm").show(250);
             $("#log-out-div").slideDown(250);
             email = user.email;
-            userID = user.uid;
-            console.log(userID);
+            uid = user.uid;
+            console.log(uid);
             var welcomeMessage = `Welcome back, ${email}!`;
             $("#welcome-message").html(welcomeMessage);
             
@@ -286,7 +286,7 @@ $(document).ready(function () {
 
         // add data to firebase 
         db.collection("timelog").add({
-            userId: userID,
+            userID: uid,
             userEmail: email, 
             date: today,
             activity: activityName,
