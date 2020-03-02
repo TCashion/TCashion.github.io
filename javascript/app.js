@@ -38,7 +38,7 @@ $(document).ready(function () {
             logOut(); 
 
             // detect if data for today already exists
-            db.collection("timelog").where("date", "==", today).where("user", "==", email).orderBy("start").get().then(querySnapshot => {
+            db.collection("timelog").where("date", "==", today).where("userID", "==", uid).orderBy("start").get().then(querySnapshot => {
                 querySnapshot.forEach(function (doc) {
                     // console.log(doc.id, "=> ", doc.data());
                     var data = doc.data();
