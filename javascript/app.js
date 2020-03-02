@@ -299,7 +299,10 @@ $(document).ready(function () {
         // adds firebase id to table row so user can delete without refreshing (this happens automatically on refresh)
         db.collection("timelog").where("date", "==", today).where("activity", "==", activityName).get().then(querySnapshot => {
             querySnapshot.forEach(function (doc) {
+<<<<<<< HEAD
                 console.log(doc.id);
+=======
+>>>>>>> parent of 4bc7b66... working on being able to read doc ID without refresh
                 var dataID = doc.id;
                 $("#data-id").attr("id", dataID);
             });
