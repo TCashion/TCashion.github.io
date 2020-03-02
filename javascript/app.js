@@ -311,8 +311,6 @@ $(document).ready(function () {
         chartData.push(duration);           
     };
 
-    
-
     function updateChart () {
         var chart = $("#chartView");
         var myDoughnutChart = new Chart(chart, {
