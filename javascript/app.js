@@ -286,7 +286,7 @@ $(document).ready(function () {
 
         // add data to firebase 
         db.collection("timelog").add({
-            user: userID,
+            userId: userID,
             userEmail: email, 
             date: today,
             activity: activityName,
