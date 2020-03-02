@@ -297,7 +297,7 @@ $(document).ready(function () {
                     var dataID = doc.id;
                     $("#data-id").attr("id", dataID);
                 });
-            });
+            })
 
         );
 
