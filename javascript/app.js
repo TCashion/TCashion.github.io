@@ -289,15 +289,19 @@ $(document).ready(function () {
             duration: duration,
             start: startTimeLegible,
             end: stopTimeLegible
-        });
+        }).then(
 
-        // adds firebase id to table row so user can delete without refreshing (this happens automatically on refresh)
-        db.collection("timelog").where("date", "==", today).where("activity", "==", activityName).get().then(querySnapshot => {
-            querySnapshot.forEach(function (doc) {
-                var dataID = doc.id;
-                $("#data-id").attr("id", dataID);
+            // adds firebase id to table row so user can delete without refreshing (this happens automatically on refresh)
+            db.collection("timelog").where("date", "==", today).where("activity", "==", activityName).get().then(querySnapshot => {
+                querySnapshot.forEach(function (doc) {
+                    var dataID = doc.id;
+                    $("#data-id").attr("id", dataID);
+                });
             });
-        });
+
+        );
+
+        
 
         // combines data if the activityName already exists
         for ( var i = 0; i < (chartLabels.length); i++) {
