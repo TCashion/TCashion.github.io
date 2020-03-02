@@ -14,6 +14,7 @@ $(document).ready(function () {
     var timer;
     var today = moment().format("LL");
     var email; 
+    var userID;
     var now; 
     var duration;
     var durationLegible;
@@ -29,6 +30,8 @@ $(document).ready(function () {
             $(".inputForm").show(250);
             $("#log-out-div").slideDown(250);
             email = user.email;
+            userID = user.uid;
+            console.log(userID);
             var welcomeMessage = `Welcome back, ${email}!`;
             $("#welcome-message").html(welcomeMessage);
             
@@ -283,7 +286,8 @@ $(document).ready(function () {
 
         // add data to firebase 
         db.collection("timelog").add({
-            user: email, 
+            userID: userID,
+            userEmail: email, 
             date: today,
             activity: activityName,
             duration: duration,
