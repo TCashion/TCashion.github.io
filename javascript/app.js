@@ -303,6 +303,7 @@ $(document).ready(function () {
                 $("#data-id").attr("id", dataID);
             });
         });
+        
 
         // combines data if the activityName already exists
         for ( var i = 0; i < (chartLabels.length); i++) {
