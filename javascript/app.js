@@ -186,9 +186,11 @@ $(document).ready(function () {
 
         // INPUT_FORMAT DEVELOPMENT: use regex here to parse in standard format
             //take input string and search for regex matches
-                //regex = /([A-z]+)/g
+            let regEx = /([A-z]+)/g;
+            
             //convert matches to array 
-            //change all punctuation to spaces
+            let regExArr = activityName.match(regEx);
+
             //capitalize first letter of all non-article words
 
 
