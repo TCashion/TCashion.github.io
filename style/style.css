@@ -161,6 +161,12 @@ th, td {
     display: none; 
 }
 
+
+/* show timer for dev purposes only - delete before merging */
+.timerHide {
+    display: block; 
+}
+
 /* COMMON ELEMENTS */
 
 button {
