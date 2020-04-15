@@ -179,24 +179,31 @@ $(document).ready(function () {
             // ASSIGN var for present time at time of button click and var for string in the input form at time of click
         activityName = $("#nameActivity").val();
         
+
+
+
+        
         // ****************************************
         // ****************DEV*********************
         // ****************DEV*********************
         // ****************************************
 
         // INPUT_FORMAT DEVELOPMENT: use regex here to parse in standard format
-            //take input string and search for regex matches
-            let regEx = /([A-z]+)/g;
-            
-            //convert matches to array 
-            let regExArr = activityName.match(regEx);
+        //take input string and search for regex matches
+        let regEx = /([A-z]+)/g;
+        
+        //convert matches to array 
+        let regExArr = activityName.match(regEx);
 
-            //capitalize first letter of all non-article words
-                // loop through array
-                // capitalize the first letter of every word
-                    // targets first character of each array element
-                // change every other letter to lowercase
+        //capitalize first letter of all non-article words
+            // loop through array
+            // capitalize the first letter of every word
             let capsArr = regExArr.map(word => word = (word[0].toUpperCase()+word.substr(1)));
+
+            // except if it's an article! (a, an, the)
+
+            // change every other letter to lowercase
+        
         // reassign activity name with changes
         activityName = capsArr.join(" ");
 
