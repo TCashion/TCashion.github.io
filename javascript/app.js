@@ -192,6 +192,15 @@ $(document).ready(function () {
             let regExArr = activityName.match(regEx);
 
             //capitalize first letter of all non-article words
+                // loop through array
+                // capitalize the first letter of every word
+                    // targets first character of each array element
+                // change every other letter to lowercase
+            let capsArr = regExArr.map(word => word = (word[0].toUpperCase()+word.substr(1)));
+        // reassign activity name with changes
+        activityName = capsArr.join(" ");
+
+
 
 
         startTime = moment();
