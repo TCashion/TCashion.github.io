@@ -178,6 +178,20 @@ $(document).ready(function () {
 
             // ASSIGN var for present time at time of button click and var for string in the input form at time of click
         activityName = $("#nameActivity").val();
+        
+        // ****************************************
+        // ****************DEV*********************
+        // ****************DEV*********************
+        // ****************************************
+
+        // INPUT_FORMAT DEVELOPMENT: use regex here to parse in standard format
+            //take input string and search for regex matches
+                //regex = /([A-z]+)/g
+            //convert matches to array 
+            //change all punctuation to spaces
+            //capitalize first letter of all non-article words
+
+
         startTime = moment();
         startTimeLegible = moment(startTime).format("hh:mm:ss a").toString();
 
