@@ -96,7 +96,7 @@ h2, h3 {
 }
 
 h3 {
-    padding: 40px;
+    margin-top: 40px;
 }
 
 .metrics {
@@ -194,6 +194,25 @@ label {
     display: block;
     font-size: 1.4rem;
 }
+
+/* FOOTER */
+
+.social {
+    background-color: rgb(27, 27, 27);
+    margin: 15px;
+    justify-content: center;
+}
+
+.social ul li{
+    display: inline-block;
+    margin: 5px;
+}
+
+.social-button {
+    height: 50px; 
+}
+
+
 
 /* MEDIA QUERIES */
 
