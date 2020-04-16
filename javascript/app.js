@@ -179,7 +179,7 @@ $(document).ready(function () {
             // ASSIGN var for present time at time of button click and var for string in the input form at time of click
         activityName = $("#nameActivity").val();
             // CHANGE format of string to uppercase first letters, then lowercase
-        let regEx = /([A-z]+)/g;
+        let regEx = /([A-z]+|[0-9]+)/g;
         let regExArr = activityName.match(regEx);
         let capsArr = regExArr.map(word => 
             word = (word[0].toUpperCase()+word.substr(1).toLowerCase())
